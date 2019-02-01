@@ -2,6 +2,7 @@
 # -*- coding:utf-8 -*-
 # @Author: wuzh
 # @time  : 2018/12/7
+import hashlib
 from functools import reduce
 
 # ---------------------------------------------------------------------------
@@ -48,3 +49,9 @@ def log(f):
 def add(x, y):
     return x + y
 print(add(5, 6))
+
+# ---------------------------------------------------------------------------
+# md5加密，加密后为32字节
+arg = '123'+'salt'
+m = hashlib.md5(bytes(arg, 'utf-8')).hexdigest()
+print('md5加密后：' + m)
