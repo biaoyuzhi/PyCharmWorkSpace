@@ -3,17 +3,17 @@
 # @Author: wuzh
 # @time  : 2018/12/3
 import pymysql
-import setting
+from config.applicationConfig import _get_yaml
 
 
 class LinkDataBase(object):
-    def __init__(self):
-        self.con = pymysql.connect(host=setting.HOST,
-                                   user=setting.USER,
-                                   password=setting.PASSWORD,
-                                   db=setting.DB,
-                                   port=setting.PORT,
-                                   charset=setting.CHARSET)
+    def __init__(self, arg="application"):
+        self.con = pymysql.connect(host=_get_yaml(arg)["dataBase"]["host"],
+                                   user=_get_yaml(arg)["dataBase"]["user"],
+                                   password=_get_yaml(arg)["dataBase"]["password"],
+                                   db=_get_yaml(arg)["dataBase"]["db"],
+                                   port=_get_yaml(arg)["dataBase"]["port"],
+                                   charset=_get_yaml(arg)["dataBase"]["charset"])
         self.cur = self.con.cursor()
 
     def get_data(self, ids):

@@ -1,5 +1,5 @@
 from flask import Flask, request
-import linkDataBase
+from service import linkDataBase
 
 app = Flask(__name__)
 
